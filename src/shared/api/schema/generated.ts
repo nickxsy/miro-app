@@ -132,7 +132,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get all boards for current user */
+        /** Получение списка досок пользователя */
         get: {
             parameters: {
                 query?: {
@@ -148,7 +148,7 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description List of boards */
+                /** @description Список досок */
                 200: {
                     headers: {
                         [name: string]: unknown;
@@ -161,7 +161,7 @@ export interface paths {
             };
         };
         put?: never;
-        /** Create a new board */
+        /** Создание новой доски */
         post: {
             parameters: {
                 query?: never;
@@ -171,7 +171,7 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Board created successfully */
+                /** @description Доска создана успешно */
                 201: {
                     headers: {
                         [name: string]: unknown;
@@ -196,7 +196,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get a board by id */
+        /** Получение доски по id */
         get: {
             parameters: {
                 query?: never;
@@ -223,7 +223,7 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        /** Delete a board */
+        /** Удаление доски */
         delete: {
             parameters: {
                 query?: never;
@@ -235,7 +235,7 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Board deleted successfully */
+                /** @description Доска удалена успешно */
                 204: {
                     headers: {
                         [name: string]: unknown;
@@ -259,7 +259,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** Update a board favorite */
+        /** Обновление доски в избранном */
         put: {
             parameters: {
                 query?: never;
@@ -302,7 +302,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** Rename a board */
+        /** Переименование доски */
         put: {
             parameters: {
                 query?: never;

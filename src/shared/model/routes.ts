@@ -5,7 +5,7 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   BOARDS: '/boards',
-  BOARD: '/boards/:id',
+  BOARD: '/boards/:boarId',
 
   // OTHER ROUTE
   NOT_FOUND: '*'
