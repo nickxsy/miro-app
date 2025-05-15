@@ -2,19 +2,38 @@ import { RouterProvider, createBrowserRouter, redirect } from 'react-router';
 
 import { ROUTES } from '@/shared/model';
 
+import { AppHeader } from '@/features/header';
+
 import App from './app';
+import { ProtectedRoute, protectedLoader } from './protected-router';
+import { Providers } from './providers';
 
 const router = createBrowserRouter([
   {
-    element: <App />,
+    element: (
+      <Providers>
+        <App />
+      </Providers>
+    ),
     children: [
       {
-        path: ROUTES.BOARDS,
-        lazy: () => import('@/features/boards-list/boards-list.page')
-      },
-      {
-        path: ROUTES.BOARD,
-        lazy: () => import('@/features/board/board.page')
+        loader: protectedLoader,
+        element: (
+          <>
+            <AppHeader />
+            <ProtectedRoute />
+          </>
+        ),
+        children: [
+          {
+            path: ROUTES.BOARDS,
+            lazy: () => import('@/features/boards-list/boards-list.page')
+          },
+          {
+            path: ROUTES.BOARD,
+            lazy: () => import('@/features/board/board.page')
+          }
+        ]
       },
       {
         path: ROUTES.REGISTER,
