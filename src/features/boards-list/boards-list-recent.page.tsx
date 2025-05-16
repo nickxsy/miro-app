@@ -3,34 +3,33 @@ import { useState } from 'react';
 import { BoardCard } from './compose/board-card';
 import { BoardItem } from './compose/board-item';
 import { useBoardsList } from './model/use-boards-list';
-import { useUpdateFavoriteBoard } from './model/use-update-favorite-board';
+import { useRecentGroups } from './model/use-recent-groups';
 import {
   BoardsListLayout,
+  BoardsListLayoutCards,
   BoardsListLayoutContent,
-  BoardsListLayoutHeader
+  BoardsListLayoutContentGroups,
+  BoardsListLayoutHeader,
+  BoardsListLayoutItems
 } from './ui/boards-list-layout';
 import { BoardsListSidebar } from './ui/boards-list-sidebar';
 import { type ViewMode, ViewModeToggle } from './ui/view-mode-toggle';
 
-function BoardsListFavoritePage() {
+function BoardsListRecentPage() {
   const boardsQuery = useBoardsList({
-    isFavorite: true
+    sort: 'lastOpenedAt'
   });
-
-  const updateFavorite = useUpdateFavoriteBoard();
 
   const [view, setView] = useState<ViewMode>('list');
 
-  const boards = boardsQuery.boards.filter(board =>
-    updateFavorite.isOptimisticFavorite(board)
-  );
+  const recentGroups = useRecentGroups(boardsQuery.boards);
 
   return (
     <BoardsListLayout
       sidebar={<BoardsListSidebar />}
       header={
         <BoardsListLayoutHeader
-          title="Избранные доски"
+          title="Последние доски"
           descrition="Здесь вы можете управлять досками"
           actions={<ViewModeToggle value={view} onChange={setView} />}
         />
@@ -43,18 +42,31 @@ function BoardsListFavoritePage() {
         currsorRef={boardsQuery.cursorRef}
         isPendingNext={boardsQuery.isFetchingNextPage}
         mode={view}
-        renderCards={() => boards.map(board => <BoardCard board={board} />)}
-        renderList={() =>
-          boards.map(
-            board =>
-              updateFavorite.isOptimisticFavorite(board) && (
-                <BoardItem board={board} />
+      >
+        <BoardsListLayoutContentGroups
+          groups={recentGroups.map(group => ({
+            items: {
+              list: (
+                <BoardsListLayoutItems>
+                  {group.items.map(board => (
+                    <BoardItem key={board.id} board={board} />
+                  ))}
+                </BoardsListLayoutItems>
+              ),
+              cards: (
+                <BoardsListLayoutCards>
+                  {group.items.map(board => (
+                    <BoardCard key={board.id} board={board} />
+                  ))}
+                </BoardsListLayoutCards>
               )
-          )
-        }
-      ></BoardsListLayoutContent>
+            }[view],
+            title: group.title
+          }))}
+        />
+      </BoardsListLayoutContent>
     </BoardsListLayout>
   );
 }
 
-export const Component = BoardsListFavoritePage;
+export const Component = BoardsListRecentPage;

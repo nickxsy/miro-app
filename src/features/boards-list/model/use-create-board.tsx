@@ -16,7 +16,7 @@ export function useCreateBoard() {
     },
 
     onSuccess: data => {
-      navigate(href(ROUTES.BOARD, { boarId: data.id }));
+      navigate(href(ROUTES.BOARD, { boardId: data.id }));
     }
   });
 

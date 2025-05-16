@@ -1,4 +1,6 @@
-import { Button } from '@/shared/ui/kit/button';
+import { Link, href } from 'react-router';
+
+import { ROUTES } from '@/shared/model/routes';
 import {
   Card,
   CardContent,
@@ -6,7 +8,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/shared/ui/kit/card';
-import { Switch } from '@/shared/ui/kit/switch';
 
 type BoardsListCardProps = {
   board: {
@@ -15,45 +16,37 @@ type BoardsListCardProps = {
     createdAt: string;
     updatedAt: string;
   };
-  isFavorite?: boolean;
-  onFavoriteToggle?: () => void;
-  onDelete?: () => void;
-  isDeletePending?: boolean;
+  rightTopActions?: React.ReactNode;
+  bottomActions?: React.ReactNode;
 };
 
 export function BoardsListCard({
   board,
-  isFavorite,
-  isDeletePending,
-  onDelete,
-  onFavoriteToggle
+  bottomActions,
+  rightTopActions
 }: BoardsListCardProps) {
   return (
-    <div>
-      <Card>
-        <CardHeader>
-          <CardTitle>{board.name}</CardTitle>
-          <div>
-            <Switch checked={isFavorite} onCheckedChange={onFavoriteToggle} />
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p>Создано: {new Date(board.createdAt).toLocaleDateString()}</p>
-          <p>
-            Последнее обновление:{' '}
-            {new Date(board.updatedAt).toLocaleDateString()}
-          </p>
-        </CardContent>
-        <CardFooter>
-          <Button
-            disabled={isDeletePending}
-            onClick={onDelete}
-            variant="destructive"
-          >
-            Удалить
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card className="relative">
+      {rightTopActions && (
+        <div className="absolute top-4 right-4">{rightTopActions}</div>
+      )}
+
+      <CardHeader>
+        <CardTitle>
+          <Link to={href(ROUTES.BOARD, { boardId: board.id })}>
+            <p className="block max-w-[calc(100%-60px)] truncate text-lg font-medium">
+              {board.name}
+            </p>
+          </Link>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Создано: {new Date(board.createdAt).toLocaleDateString()}</p>
+        <p>
+          Последнее обновление: {new Date(board.updatedAt).toLocaleDateString()}
+        </p>
+      </CardContent>
+      {bottomActions && <CardFooter>{bottomActions}</CardFooter>}
+    </Card>
   );
 }

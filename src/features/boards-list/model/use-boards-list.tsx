@@ -1,3 +1,4 @@
+import { keepPreviousData } from '@tanstack/react-query';
 import { type RefCallback, useCallback } from 'react';
 
 import { rqClient } from '@/shared/api/instance';
@@ -33,6 +34,7 @@ export function useBoardsList({
       {
         initialPageParam: 1,
         pageParamName: 'page',
+        placeholderData: keepPreviousData,
         getNextPageParam: (lastPage, _, lastPageParams) =>
           Number(lastPageParams) < lastPage.totalPages
             ? Number(lastPageParams) + 1
