@@ -5,14 +5,18 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   BOARDS: '/boards',
-  BOARD: '/boards/:id',
+  BOARDS_FAVORITE: '/boards/favorite',
+  BOARDS_RECENT: '/boards/recent',
+  BOARD: '/boards/:boardId',
 
   // OTHER ROUTE
   NOT_FOUND: '*'
 } as const;
 
+export type Route = (typeof ROUTES)[keyof typeof ROUTES];
+
 export type PathParams = {
-  [ROUTES.BOARD]: { boarId: string };
+  [ROUTES.BOARD]: { boardId: string };
 };
 
 declare module 'react-router' {

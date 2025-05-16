@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Miro-like Collaborative Whiteboard API
-  description: API for a collaborative whiteboard application similar to Miro
+  title: Miro приложение коллаборативная доска API
+  description: API для Miro приложения коллаборативной доски
   version: 1.0.0
 
 components:

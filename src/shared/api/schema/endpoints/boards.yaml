@@ -55,7 +55,7 @@ schemas:
         type: integer
 
 getAllBoards:
-  summary: Get all boards for current user
+  summary: Получение списка досок пользователя
   security:
     - bearerAuth: []
   parameters:
@@ -93,7 +93,7 @@ getAllBoards:
         type: string
   responses:
     '200':
-      description: List of boards
+      description: Список досок
       content:
         application/json:
           schema:
@@ -102,7 +102,7 @@ getAllBoards:
       $ref: '../shared/responses.yaml#/UnauthorizedError'
 
 getBoardById:
-  summary: Get a board by id
+  summary: Получение доски по id
   security:
     - bearerAuth: []
   parameters:
@@ -124,12 +124,12 @@ getBoardById:
       $ref: '../shared/responses.yaml#/NotFoundError'
 
 createBoard:
-  summary: Create a new board
+  summary: Создание новой доски
   security:
     - bearerAuth: []
   responses:
     '201':
-      description: Board created successfully
+      description: Доска создана успешно
       content:
         application/json:
           schema:
@@ -138,7 +138,7 @@ createBoard:
       $ref: '../shared/responses.yaml#/UnauthorizedError'
 
 renameBoard:
-  summary: Rename a board
+  summary: Переименование доски
   security:
     - bearerAuth: []
   parameters:
@@ -164,7 +164,7 @@ renameBoard:
       $ref: '../shared/responses.yaml#/UnauthorizedError'
 
 updateBoardFavorite:
-  summary: Update a board favorite
+  summary: Обновление доски в избранном
   security:
     - bearerAuth: []
   parameters:
@@ -190,7 +190,7 @@ updateBoardFavorite:
       $ref: '../shared/responses.yaml#/UnauthorizedError'
 
 deleteBoard:
-  summary: Delete a board
+  summary: Удаление доски
   security:
     - bearerAuth: []
   parameters:
@@ -201,7 +201,7 @@ deleteBoard:
         type: string
   responses:
     '204':
-      description: Board deleted successfully
+      description: Доска удалена успешно
     '401':
       $ref: '../shared/responses.yaml#/UnauthorizedError'
     '404':
