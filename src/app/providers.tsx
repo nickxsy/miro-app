@@ -1,6 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 
-import { queryClient } from '@/shared/api/query-client';
+import { queryClient } from '@/shared/api';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (

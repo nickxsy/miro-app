@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/shared/ui/kit/card';
+import { Card } from '@/shared/ui';
 
 export function AuthLayout({
   form,
@@ -21,16 +14,16 @@ export function AuthLayout({
   return (
     <main className="grow pt-[80px]">
       <div className="flex items-center justify-center">
-        <Card className="w-full max-w-[400px]">
-          <CardHeader>
-            <CardTitle>{title}</CardTitle>
-            {description && <CardDescription>{description}</CardDescription>}
-          </CardHeader>
-          <CardContent>{form}</CardContent>
-          <CardFooter>
+        <Card.Root className="w-full max-w-[400px]">
+          <Card.Header>
+            <Card.Title>{title}</Card.Title>
+            {description && <Card.Description>{description}</Card.Description>}
+          </Card.Header>
+          <Card.Content>{form}</Card.Content>
+          <Card.Footer>
             <p className="text-sm">{footerText}</p>
-          </CardFooter>
-        </Card>
+          </Card.Footer>
+        </Card.Root>
       </div>
     </main>
   );

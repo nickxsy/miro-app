@@ -2,16 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/shared/ui/kit/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/shared/ui/kit/form';
-import { Input } from '@/shared/ui/kit/input';
+import { Button, Form, Input } from '@/shared/ui';
 
 import { useLogin } from '../model/use-login';
 
@@ -42,39 +33,39 @@ export function LoginForm() {
   const onSubmit = form.handleSubmit(login);
 
   return (
-    <Form {...form}>
+    <Form.Root {...form}>
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-        <FormField
+        <Form.Field
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="admin@gmail.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <Form.Item>
+              <Form.Label>Email</Form.Label>
+              <Form.Control>
+                <Input.Root placeholder="admin@gmail.com" {...field} />
+              </Form.Control>
+              <Form.Message />
+            </Form.Item>
           )}
         />
-        <FormField
+        <Form.Field
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Пароль</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="********" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <Form.Item>
+              <Form.Label>Пароль</Form.Label>
+              <Form.Control>
+                <Input.Root type="password" placeholder="********" {...field} />
+              </Form.Control>
+              <Form.Message />
+            </Form.Item>
           )}
         />
         {errorMessage && <p className="text-destructive">{errorMessage}</p>}
-        <Button disabled={isPending} type="submit">
+        <Button.Root disabled={isPending} type="submit">
           Войти
-        </Button>
+        </Button.Root>
       </form>
-    </Form>
+    </Form.Root>
   );
 }

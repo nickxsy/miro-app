@@ -1,6 +1,6 @@
 import { StarIcon } from 'lucide-react';
 
-import { cn } from '@/shared/lib/css';
+import { cn } from '@/shared/lib';
 
 export function BoardsFavoriteToggle({
   isFavorite,

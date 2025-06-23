@@ -1,4 +1,4 @@
 export { useSession } from './session';
+export { CONFIG } from './config';
 
-export { ROUTES } from './routes';
-export { type PathParams } from './routes';
+export { ROUTES, type PathParams, type Route } from './routes';

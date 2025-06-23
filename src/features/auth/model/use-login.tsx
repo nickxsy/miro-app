@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import { publicRqClient } from '@/shared/api/instance';
-import type { ApiSchemas } from '@/shared/api/schema';
+import { type ApiSchemas, publicRqClient } from '@/shared/api';
 import { ROUTES, useSession } from '@/shared/model';
 
 export function useLogin() {

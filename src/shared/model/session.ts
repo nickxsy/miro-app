@@ -2,7 +2,7 @@ import { createGStore } from 'create-gstore';
 import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 
-import { publicFetchClient } from '../api/instance';
+import { publicFetchClient } from '@/shared/api';
 
 type Session = {
   userId: string;

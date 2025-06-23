@@ -1,5 +1,5 @@
-import type { ApiSchemas } from '@/shared/api/schema';
-import { DropdownMenuItem } from '@/shared/ui/kit/dropdown-menu';
+import type { ApiSchemas } from '@/shared/api';
+import { DropdownMenu } from '@/shared/ui';
 
 import { useDeleteBoard } from '../model/use-delete-board';
 import { useUpdateFavoriteBoard } from '../model/use-update-favorite-board';
@@ -13,13 +13,13 @@ export function BoardItem({ board }: { board: ApiSchemas['Board'] }) {
   return (
     <BoardsListItem
       menuActions={
-        <DropdownMenuItem
+        <DropdownMenu.Item
           variant="destructive"
           disabled={deleteBoard.isPending(board.id)}
           onClick={() => deleteBoard.deleteBoard(board.id)}
         >
           Удалить
-        </DropdownMenuItem>
+        </DropdownMenu.Item>
       }
       rightActions={
         <BoardsFavoriteToggle

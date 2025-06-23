@@ -1,9 +1,9 @@
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import * as React from 'react';
 
-import { cn } from '@/shared/lib/css';
+import { cn } from '@/shared/lib';
 
-function Separator({
+function Root({
   className,
   orientation = 'horizontal',
   decorative = true,
@@ -23,4 +23,4 @@ function Separator({
   );
 }
 
-export { Separator };
+export { Root };

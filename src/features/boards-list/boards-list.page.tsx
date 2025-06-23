@@ -2,14 +2,7 @@ import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
 
 import { useDebouncedValue } from '@/shared/lib/react';
-import { Button } from '@/shared/ui/kit/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/shared/ui/kit/select';
+import { Button, Select } from '@/shared/ui';
 
 import { BoardCard } from './compose/board-card';
 import { BoardItem } from './compose/board-item';
@@ -46,35 +39,35 @@ function BoardsListPage() {
           title="Доски"
           descrition="Здесь вы можете управлять досками"
           actions={
-            <Button
+            <Button.Root
               onClick={createBoard.createBoard}
               disabled={createBoard.isPending}
             >
               <PlusIcon />
               Создать доску
-            </Button>
+            </Button.Root>
           }
         />
       }
       filters={
         <BoardsListLayoutFilter
           sort={
-            <Select
+            <Select.Root
               value={boardsFilters.sort}
               onValueChange={value =>
                 boardsFilters.setSort(value as BoardsSortOption)
               }
             >
-              <SelectTrigger id="sort">
-                <SelectValue placeholder="Сортировка" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="lastOpenedAt">По дате открытие</SelectItem>
-                <SelectItem value="createdAt">По дате создания</SelectItem>
-                <SelectItem value="updatedAt">По дате обновления</SelectItem>
-                <SelectItem value="name">По названию</SelectItem>
-              </SelectContent>
-            </Select>
+              <Select.Trigger id="sort">
+                <Select.Value placeholder="Сортировка" />
+              </Select.Trigger>
+              <Select.Content>
+                <Select.Item value="lastOpenedAt">По дате открытие</Select.Item>
+                <Select.Item value="createdAt">По дате создания</Select.Item>
+                <Select.Item value="updatedAt">По дате обновления</Select.Item>
+                <Select.Item value="name">По названию</Select.Item>
+              </Select.Content>
+            </Select.Root>
           }
           actions={<ViewModeToggle value={view} onChange={setView} />}
         />
@@ -88,12 +81,16 @@ function BoardsListPage() {
         mode={view}
         isPendingNext={boardsQuery.isFetchingNextPage}
         renderCards={() =>
-          boardsQuery.boards.map(board => <BoardCard board={board} />)
+          boardsQuery.boards.map(board => (
+            <BoardCard key={board.id} board={board} />
+          ))
         }
         renderList={() =>
-          boardsQuery.boards.map(board => <BoardItem board={board} />)
+          boardsQuery.boards.map(board => (
+            <BoardItem key={board.id} board={board} />
+          ))
         }
-      ></BoardsListLayoutContent>
+      />
     </BoardsListLayout>
   );
 }

@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { href, useNavigate } from 'react-router';
 
-import { rqClient } from '@/shared/api/instance';
-import { ROUTES } from '@/shared/model/routes';
+import { rqClient } from '@/shared/api';
+import { ROUTES } from '@/shared/model';
 
 export function useCreateBoard() {
   const navigate = useNavigate();
