@@ -1,8 +1,7 @@
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 
-import { CONFIG } from '@/shared/model/config';
-import { useSession } from '@/shared/model/session';
+import { CONFIG, useSession } from '@/shared/model';
 
 import type { ApiPaths, ApiSchemas } from './schema';
 

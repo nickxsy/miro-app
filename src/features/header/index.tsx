@@ -1,15 +1,7 @@
 import { LogOut } from 'lucide-react';
 
 import { useSession } from '@/shared/model';
-import { Avatar, AvatarFallback } from '@/shared/ui/kit/avatar';
-import { Button } from '@/shared/ui/kit/button';
-import { Separator } from '@/shared/ui/kit/separator';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@/shared/ui/kit/tooltip';
+import { Avatar, Button, Separator, Tooltip } from '@/shared/ui';
 
 export function AppHeader() {
   const { session, logout } = useSession();
@@ -29,28 +21,28 @@ export function AppHeader() {
                 <span className="text-muted-foreground text-sm">
                   {session.email}
                 </span>
-                <Avatar>
-                  <AvatarFallback className="border border-amber-200 bg-amber-100 text-amber-700">
+                <Avatar.Root>
+                  <Avatar.Fallback className="border border-amber-200 bg-amber-100 text-amber-700">
                     UV
-                  </AvatarFallback>
-                </Avatar>
+                  </Avatar.Fallback>
+                </Avatar.Root>
               </div>
-              <Separator className="bg-amber-200" orientation="vertical" />
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
+              <Separator.Root className="bg-amber-200" orientation="vertical" />
+              <Tooltip.Provider>
+                <Tooltip.Root>
+                  <Tooltip.Trigger asChild>
+                    <Button.Root
                       className="rounded-full border-amber-200 bg-transparent text-amber-700 hover:border-transparent hover:bg-amber-700 hover:text-white"
                       size="icon"
                       variant="outline"
                       onClick={logout}
                     >
                       <LogOut />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Выйти</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+                    </Button.Root>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content>Выйти</Tooltip.Content>
+                </Tooltip.Root>
+              </Tooltip.Provider>
             </div>
           </div>
         </div>

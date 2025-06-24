@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router';
 
-import { cn } from '@/shared/lib/css';
-import { ROUTES, type Route } from '@/shared/model/routes';
+import { cn } from '@/shared/lib';
+import { ROUTES, type Route } from '@/shared/model';
 
 type NavLinkProps = {
   label: string;

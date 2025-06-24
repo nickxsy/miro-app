@@ -1,6 +1,6 @@
 import { Navigate, Outlet, redirect } from 'react-router';
 
-import { enableMocking } from '@/shared/api/mocks';
+import { enableMocking } from '@/shared/api';
 import { ROUTES, useSession } from '@/shared/model';
 
 export function ProtectedRoute() {

@@ -1,5 +1,5 @@
-import type { ApiSchemas } from '@/shared/api/schema';
-import { Button } from '@/shared/ui/kit/button';
+import type { ApiSchemas } from '@/shared/api';
+import { Button } from '@/shared/ui';
 
 import { useDeleteBoard } from '../model/use-delete-board';
 import { useUpdateFavoriteBoard } from '../model/use-update-favorite-board';
@@ -13,13 +13,13 @@ export function BoardCard({ board }: { board: ApiSchemas['Board'] }) {
   return (
     <BoardsListCard
       bottomActions={
-        <Button
+        <Button.Root
           variant="destructive"
           disabled={deleteBoard.isPending(board.id)}
           onClick={() => deleteBoard.deleteBoard(board.id)}
         >
           Удалить
-        </Button>
+        </Button.Root>
       }
       rightTopActions={
         <BoardsFavoriteToggle
